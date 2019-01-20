@@ -1,6 +1,6 @@
 # gitsearch
 
-It's a mobile app for searching repositories on Github
+It's a mobile app for dynamic searching repositories on Github
 
 ## Technologies
 
