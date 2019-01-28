@@ -71,7 +71,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 physics: ClampingScrollPhysics(), // impedide que o list view tenha altura infinita
                 itemCount: snapshot.data.items.length,
                 itemBuilder: (BuildContext context, int index) {
-                  SearchItem item = snapshot?.data.items[index];
+                  SearchItem item = snapshot.data.items[index];
                   return _items(item);
                 },
               ) : 
