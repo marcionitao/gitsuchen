@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   // retorna os itens
   Widget _items(SearchItem item) {
     return ListTile(
-      leading: CircleAvatar(backgroundImage: NetworkImage(item?.avatarUrl),),
+      leading: CircleAvatar(backgroundImage: NetworkImage(item?.avatarUrl ?? "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),),
       title: Text(item?.fullName ?? "Title"),
       subtitle: Text(item?.url ?? "url"),
     );
@@ -67,6 +67,8 @@ class _HomeWidgetState extends State<HomeWidget> {
               return snapshot.hasData ? 
               // expoe uma lista para grande volume de resultados
               ListView.builder(
+                shrinkWrap: true, // ajeita a tela
+                physics: ClampingScrollPhysics(), // impedide que o list view tenha altura infinita
                 itemCount: snapshot.data.items.length,
                 itemBuilder: (BuildContext context, int index) {
                   SearchItem item = snapshot?.data.items[index];
@@ -81,3 +83,4 @@ class _HomeWidgetState extends State<HomeWidget> {
     );
   }
 }
+// 1:30:56

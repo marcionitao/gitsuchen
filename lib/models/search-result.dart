@@ -9,7 +9,7 @@ class SearchResult {
 
   // objetivo aqui, é que o JSON seja recebido como uma Lista
   factory SearchResult.fromJson(Map<String, dynamic> json) {
-    final listItems = (json as List)
+    final listItems = (json["items"] as List)
     ?.cast<Map<String, dynamic>>() // uma lista de mapa de string e dinamico
     ?.map((item) {
 

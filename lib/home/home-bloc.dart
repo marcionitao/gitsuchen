@@ -14,7 +14,7 @@ class HomeBloc {
   Sink<String> get searchEvent => _searchController.sink;
 
   // recebe o resultado da api dentro de um fluxo
-  Observable<SearchResult> listItems = Stream.empty(); // valor vazio
+  Observable<SearchResult> listItems;
 
   // construtor
   HomeBloc() {
