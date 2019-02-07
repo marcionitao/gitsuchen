@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gitsearch/details/details-widget.dart';
 import 'package:gitsearch/home/home-bloc.dart';
 import 'package:gitsearch/models/search-item.dart';
 import 'package:gitsearch/models/search-result.dart';
@@ -44,9 +46,22 @@ class _HomeWidgetState extends State<HomeWidget> {
   // retorna os itens
   Widget _items(SearchItem item) {
     return ListTile(
-      leading: CircleAvatar(backgroundImage: NetworkImage(item?.avatarUrl ?? "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),),
+      // Hero serve para animação de transição de telas
+      leading: Hero(
+        tag: item.url,
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(
+            item?.avatarUrl ?? "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"
+          ),
+        )
+      ),
       title: Text(item?.fullName ?? "Title"),
       subtitle: Text(item?.url ?? "url"),
+      // ação para o botão de detalhes
+      onTap: () => Navigator.push(
+        context, 
+        CupertinoPageRoute(
+          builder: (context) => DetailsWidget(item: item))),
     );
   }
 
@@ -72,6 +87,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 itemCount: snapshot.data.items.length,
                 itemBuilder: (BuildContext context, int index) {
                   SearchItem item = snapshot.data.items[index];
+                  // returna o widget lque lista os itens
                   return _items(item);
                 },
               ) : 
@@ -83,4 +99,3 @@ class _HomeWidgetState extends State<HomeWidget> {
     );
   }
 }
-// 1:30:56
